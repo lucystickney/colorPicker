@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Color picker</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Ropa+Sans&family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Karma:wght@300&display=swap" rel="stylesheet">
+        <style>
+            html {
+                margin: 10px;
+                padding: 25px;
+            }
+            body {
+                background: #e7e3ed;
+                margin: 10px;
+            }
+            h2 {
+                color: #000;
+                font-size: 32px;
+                font-family: JetBrains Mono, 'Source Code Pro', sans-serif;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+            p {
+                color: #000;
+                font-size: 20px;
+                font-family: 'Karma', serif;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+            .container {
+                display: flex;
+                width: 492px;
+                flex-direction: column;
+                flex-shrink: 0;
+            }
+            .column, .column1, .column2, .column3 {
+                flex: 1 0 33.33%; /* Each column takes 50% of the container width */
+                margin: 20px;
+                
+            }
+            .row {
+                display: flex;
+            }
+            input {
+                width: 309px;
+                height: 78px;
+                flex-shrink: 0;
+                border-radius: 10px;
+                border: 1px solid #000;
+                background: #e7e3ed;
+                padding: 5px;
+                font-family: JetBrains Mono, 'Source Code Pro', sans-serif;
+                font-size: 32px;
+                background: rgba(217, 217, 217, 0.00);
+
+            }
+            .border {
+                width: 375px;
+                height: 375px;
+                flex-shrink: 0;
+                border: 1px solid #000;
+                background: rgba(217, 217, 217, 0.00);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+
+            }
+            .colorSquare {
+                width: 274px;
+                height: 274px;
+                flex-shrink: 0;
+                background-color: #e67f7f00;
+                color: #000;
+                font-size: 32px;
+                font-family: JetBrains Mono, 'Source Code Pro', sans-serif;
+                font-style: normal;
+                font-weight: 400;
+                border: 1px solid #000 !important;
+                
+                
+            }
+            button {
+                border-style: hidden;
+                background: rgba(217, 217, 217, 0.01);
+                font-family: 'Karma', serif;
+            }
+            .buttons {
+                
+                position: absolute;
+                top: 0;
+                left: 0;
+                
+            }
+            .output {
+                font-family: JetBrains Mono, 'Source Code Pro', sans-serif;
+                font-size: 24px;
+                color: #000;
+                padding: 10px;
+            }
+            .greenColor, .purpleColor, .maroonColor {
+                width: 159px;
+                height: 159px;
+                flex-shrink: 0;
+               
+            }
+            .greenColor {
+                background: #709970;
+            }
+            .purpleColor {
+                background: #817FE6;
+
+            }
+            .maroonColor {
+                background: #6A0D45;
+            }
+
+            .borderSmall {
+                width: 217px;
+                height: 217px;
+                flex-shrink: 0;
+                border: 1px solid #000;
+                background: rgba(217, 217, 217, 0.00);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+
+
+            }
+           
+
+        </style>
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="column" id="title">
+                    <h2>The Color Picker</h2>
+                    <p>This is a tool that is 
+                        meant to help you pick excellent color 
+                        combinations. Explore the page to learn more. </p>
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column1" id="hueInfo">
+                    <h2>Hue</h2>
+                    <p>Hue refers to the attribute that distinguishes one color 
+                        from another on the color spectrum. It is often described 
+                        as the "pure" color itself, such as red, blue, or green. 
+                        Hue is what allows us to differentiate between different colors. </p>
+                </div>
+                <div class="column1" id="input">
+                    <input type="text" id="hue">
+                    <p>Enter a number between 0 and 360. 
+                        This represents a degree along the color wheel. </p>
+                </div>
+                <div class="column1">
+                    <div class="borderSmall">
+                        <div class="buttons">
+                            <button onclick="changeBack('#709970')" class="background">background</button>
+                            <button onclick="changeTitle('#709970')" class="title">title</button>
+                            <button onclick="changeText('#709970')" class="text">text</button>
+                        </div>
+                        <div class="greenColor"></div>    
+                    </div> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="column2" id="satInfo">
+                    <h2>Saturation</h2>
+                    <p>Saturation, also known as chroma or intensity, represents the vibrancy 
+                        or vividness of a color. It measures the purity of a hue and determines 
+                        how much gray is mixed with it. A highly saturated color appears vivid 
+                        and pure, while a desaturated color contains more gray and appears 
+                        muted or dull.</p>
+                </div>
+                <div class="column2">
+                    <input type="text" id="sat">
+                    <p>Enter a percentage between 0 and 100. This represents the purity of the color, 
+                        0% being completely unsaturated, and 100% being the full saturation.  </p>
+                </div>
+                <div class="column2">
+                    <div class="borderSmall">
+                        <div class="buttons">
+                            <button onclick="changeBack('#817FE6')" class="background">background</button>
+                            <button onclick="changeTitle('#817FE6')" class="title">title</button>
+                            <button onclick="changeText('#817FE6')" class="text">text</button>
+                        </div>
+                        <div class="purpleColor"></div>    
+                    </div> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="column3" id="valueInfo">
+                    <h2>Value</h2>
+                    <p>Value, also known as brightness or lightness, represents the relative 
+                        darkness or lightness of a color. It refers to the amount of light 
+                        or darkness present in a color. Colors with a higher value appear 
+                        lighter, while those with a lower value appear darker.</p>
+                </div>
+                <div class="column3">
+                    <input type="text" id="value">
+                    <p>Enter a percentage between 0 and 100. This represents the brightness of the color, 
+                        0% being completely black, and 100% being completely white. </p>
+                </div>
+                <div class="column3">
+                    <div class="borderSmall">
+                        <div class="buttons">
+                            <button onclick="changeBack('#6A0D45')" class="background">background</button>
+                            <button onclick="changeTitle('#6A0D45')" class="title">title</button>
+                            <button onclick="changeText('#6A0D45')" class="text">text</button>
+                        </div>
+                        <div class="maroonColor"></div>    
+                    </div> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="border">
+                    <div class="buttons">
+                        <button onclick="changeBack('main')" class="background">background</button>
+                        <button onclick="changeTitle('main')" class="title">title</button>
+                        <button onclick="changeText('main')" class="text">text</button>
+                    </div>
+                    <button onclick="generateColor()" class="colorSquare">Generate</button>
+                </div>  
+                <div class="output" id="output"></div>     
+            </div>
+        </div>
+        <script>
+            /*
+                todo:
+
+                    -create a function that changes the color of the classes when you press
+                        background/title/text for each color square -> done
+                    -add a lot of color squares, staring with well-known colors
+                    -add a reset button
+                    -add more info in the middle, just so there is something breaking up the 
+                        color squares
+                    -check whether user input is valid, if not, display a message
+                    -make outlines of elements, input all change color also
+                    -create a function that puts together the hsl color based on user input, 
+                        and displays it in main square -> done
+                        -also must calculate the hex color and display that next to square -> fix function that does this
+                    -later, when everything works, can add a similar one for hex
+
+            */
+
+            // function that changes color of classes when background/title/text pressed -->
+            // need a separate function for back, text, title
+            function changeBack(hex) {
+                // each color square has an id --> hex code
+                // when back button pressed, input id into changeBack()
+                //var color = hex;
+                if (hex == 'main') {
+                    console.log("true");
+                    // see if this works 
+                    // if it is the main square, have to look up the id of colorSquare
+                    // which should have been assigned by the generateColor function
+
+                    // lookup the class colorSquare
+                    var getSquare = document.querySelector('.colorSquare');
+                    console.log(getSquare);
+                    // get the id --> should be the hex#
+                    hex = getSquare.id;
+                    console.log(hex);
+                }
+                // else, should already have hex# as id
+                var elements = document.getElementsByTagName("body");
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].style.backgroundColor = hex;
+                }
+                // check if input is certain keyword --> if it is, it is main square
+                // if keyword, look up element id
+                // use element id as hex number instead
+                
+
+            }
+            function changeText(hex) {
+
+                if (hex == 'main') {
+                    console.log("true");
+                    // see if this works 
+                    // if it is the main square, have to look up the id of colorSquare
+                    // which should have been assigned by the generateColor function
+
+                    // lookup the class colorSquare
+                    var getSquare = document.querySelector('.colorSquare');
+                    console.log(getSquare);
+                    // get the id --> should be the hex#
+                    hex = getSquare.id;
+                    console.log(hex);
+                }
+                //var color = hex;
+                var elems = document.getElementsByTagName("p");
+                
+                for (var i = 0; i < elems.length; i++) {
+                    elems[i].style.color = hex;
+                }
+               
+            }
+            function changeTitle(hex) {
+                if (hex == 'main') {
+                    console.log("true");
+                    // see if this works 
+                    // if it is the main square, have to look up the id of colorSquare
+                    // which should have been assigned by the generateColor function
+
+                    // lookup the class colorSquare
+                    var getSquare = document.querySelector('.colorSquare');
+                    console.log(getSquare);
+                    // get the id --> should be the hex#
+                    hex = getSquare.id;
+                    console.log(hex);
+                }
+                var color = hex;
+                var elems = document.getElementsByTagName("h2");
+                for (var i = 0; i < elems.length; i++) {
+                    elems[i].style.color = hex;
+                }
+            }
+            // a function that puts together user input for a custom color
+            function generateColor() {
+                var hueInput = document.getElementById("hue").value;
+                console.log(hueInput);
+                var satInput = document.getElementById("sat").value;
+                var valInput = document.getElementById("value").value;
+                var hexNum = hslToHex(hueInput, satInput, valInput);
+                console.log(hexNum);
+                var final = "hsl(" + hueInput + ", " + satInput + "%, " + valInput + "%)";
+                var outputElem = document.getElementById("output");
+                outputElem.textContent = final;
+                var squares = document.getElementsByClassName("colorSquare");
+                //squares.style.backgroundColor = final;
+                for (var i = 0; i < squares.length; i++) {
+                    squares[i].style.backgroundColor = final;
+                }
+                //console.log("hsl(" + hueInput + ", " + satInput + ", " + valInput + ")");
+                
+                var colorS = document.querySelector('.colorSquare');
+                colorS.id = final;
+                console.log(colorS.id);
+                
+            }
+            function hslToHex(h, s, l) {
+            // Convert hue to degrees
+            h %= 360;
+            if (h < 0) {
+                h += 360;
+            }
+            console.log(h);
+
+            // Convert saturation and lightness to percentages
+            s = Math.max(0, Math.min(100, s));
+            l = Math.max(0, Math.min(100, l));
+
+            // Convert HSL to RGB
+            let c = (1 - Math.abs(2 * l - 1)) * s;
+            let x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+            let m = l - c / 2;
+            let r, g, b;
+
+            if (h < 60) {
+                [r, g, b] = [c, x, 0];
+            } else if (h < 120) {
+                [r, g, b] = [x, c, 0];
+            } else if (h < 180) {
+                [r, g, b] = [0, c, x];
+            } else if (h < 240) {
+                [r, g, b] = [0, x, c];
+            } else if (h < 300) {
+                [r, g, b] = [x, 0, c];
+            } else {
+                [r, g, b] = [c, 0, x];
+            }
+
+            // Convert RGB to hex
+            let hexR = Math.round((r + m) * 255).toString(16).padStart(2, '0');
+            let hexG = Math.round((g + m) * 255).toString(16).padStart(2, '0');
+            let hexB = Math.round((b + m) * 255).toString(16).padStart(2, '0');
+
+            return '#' + hexR + hexG + hexB;
+            }
+
+
+        </script>
+    </body>
+</html>
