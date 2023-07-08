@@ -38,7 +38,8 @@
                 flex-shrink: 0;
             }
             .column, .column1, .column2, .column3 {
-                flex: 1 0 50%; /* Each column takes 50% of the container width */
+                flex: 1 0 42%; /* Each column takes 50% of the container width */
+                margin-right: 57px;
                 
                 
             }
@@ -87,13 +88,13 @@
                 font-family: JetBrains Mono, 'Source Code Pro', sans-serif;
                 font-style: normal;
                 font-weight: 400;
-                border: 1px solid #000 !important;
+                
                 
                 
             }
             button {
                 border-style: hidden;
-                background: rgba(217, 217, 217, 0.01);
+                background: rgba(217, 217, 217, 0.00);
                 font-family: 'Karma', serif;
             }
             .buttons {
@@ -110,7 +111,7 @@
                 padding: 10px;
             }
             .greenColor, .purpleColor, .maroonColor, .yellowColor, 
-            .brownColor, .pinkColor, .brightRedColor, .navyColor, .brightGreenColor {
+            .brownColor, .pinkColor, .brightRedColor, .navyColor, .brightGreenColor, .lightBlueColor, .greenish, .lightSand {
                 width: 159px;
                 height: 159px;
                 flex-shrink: 0;
@@ -149,6 +150,19 @@
                 background: #3B890B;
 
             }
+            .lightBlueColor {
+                background: #B8D4FF;
+
+            }
+            .greenish {
+                background: #2D9475;
+
+
+            }
+            .lightSand {
+                background: #E0CBCB;
+
+            }
 
 
             .borderSmall {
@@ -177,7 +191,7 @@
 
             }
             .color1, .color2, .color3 {
-                flex: 1 0 calc(33.33% - 20px); /* Each column takes 33.33% of the container width with some margin */
+                flex: 1 0 calc(25% - 20px); /* Each column takes 33.33% of the container width with some margin */
                 margin: 10px;
             }
 
@@ -378,6 +392,36 @@
                             <div class="brightGreenColor"></div>    
                         </div> 
                     </div>
+                    <div class="color3">
+                        <div class="borderSmall">
+                            <div class="buttons">
+                                <button onclick="changeBack('#B8D4FF')" class="background">background</button>
+                                <button onclick="changeTitle('#B8D4FF')" class="title">title</button>
+                                <button onclick="changeText('#B8D4FF')" class="text">text</button>
+                            </div>
+                            <div class="lightBlueColor"></div>    
+                        </div> 
+                    </div>
+                    <div class="color3">
+                        <div class="borderSmall">
+                            <div class="buttons">
+                                <button onclick="changeBack('#2D9475')" class="background">background</button>
+                                <button onclick="changeTitle('#2D9475')" class="title">title</button>
+                                <button onclick="changeText('#2D9475')" class="text">text</button>
+                            </div>
+                            <div class="greenish"></div>    
+                        </div> 
+                    </div>
+                    <div class="color3">
+                        <div class="borderSmall">
+                            <div class="buttons">
+                                <button onclick="changeBack('#E0CBCB')" class="background">background</button>
+                                <button onclick="changeTitle('#E0CBCB')" class="title">title</button>
+                                <button onclick="changeText('#E0CBCB')" class="text">text</button>
+                            </div>
+                            <div class="lightSand"></div>    
+                        </div> 
+                    </div>
                 </div>
             </div>
         </div>
@@ -447,9 +491,12 @@
                 }
                 //var color = hex;
                 var elems = document.getElementsByTagName("p");
-                
+                var butts = document.getElementsByTagName("button");
                 for (var i = 0; i < elems.length; i++) {
                     elems[i].style.color = hex;
+                }
+                for (var z = 0; z < butts.length; z++) {
+                    butts[z].style.color = hex;
                 }
                
             }
@@ -472,32 +519,71 @@
                 for (var i = 0; i < elems.length; i++) {
                     elems[i].style.color = hex;
                 }
+                var ins = document.getElementsByTagName("input");
+                for (var z = 0; z < ins.length; z++) {
+                    ins[z].style.color = hex;
+                    ins[z].style.borderColor = hex;
+                }
+                var borders = document.getElementsByClassName("borderSmall");
+
+                for (var j = 0; j < borders.length; j++) {
+                    borders[j].style.borderColor = hex;
+                }
+                var bigBord = document.getElementsByClassName("bigBorder");
+                for (var t = 0; t < bigBord.length; t++) {
+                    bigBord[t].style.borderColor = hex;
+                }
+                var oneBord = document.getElementsByClassName("border");
+                for (var y = 0; y < bigBord.length; y++) {
+                    oneBord[y].style.borderColor = hex;
+                }
+                var out = document.getElementsByClassName("output");
+                for (var y = 0; y < out.length; y++) {
+                    out[y].style.color = hex;
+                }
+
+
             }
             // a function that puts together user input for a custom color
             function generateColor() {
                 var hueInput = document.getElementById("hue").value;
-                console.log(hueInput);
+                //console.log(hueInput);
                 if (hueInput > 360 || hueInput < 0) {
                     console.log("true");
-                    console.log(hueInput);
+                    //console.log(hueInput);
                 }   
                 var satInput = document.getElementById("sat").value;
+                if (satInput < 0 || satInput > 100 || satInput === "") {
+                    console.log("wrong");
+                }
+
+
                 var valInput = document.getElementById("value").value;
-                var hexNum = hslToHex(hueInput, satInput, valInput);
-                console.log(hexNum);
-                var final = "hsl(" + hueInput + ", " + satInput + "%, " + valInput + "%)";
+                if (valInput < 0 || valInput > 100 || valInput === "" || satInput < 0 
+                || satInput > 100 || satInput === "" || hueInput < 0 || hueInput > 360 || hueInput === "") {
+                    console.log("wroong val");
+                    var final = "enter valid inputs"
+                    
+                }
+                else {
+                    var hexNum = hslToHex(hueInput, satInput, valInput);
+                    console.log(hexNum);
+                    var final = "hsl(" + hueInput + ", " + satInput + "%, " + valInput + "%)";
+                    
+                    var squares = document.getElementsByClassName("colorSquare");
+                    //squares.style.backgroundColor = final;
+                    for (var i = 0; i < squares.length; i++) {
+                        squares[i].style.backgroundColor = final;
+                    }
+                    //console.log("hsl(" + hueInput + ", " + satInput + ", " + valInput + ")");
+                    
+                    var colorS = document.querySelector('.colorSquare');
+                    colorS.id = final;
+                    console.log(colorS.id);
+                
+                } 
                 var outputElem = document.getElementById("output");
                 outputElem.textContent = final;
-                var squares = document.getElementsByClassName("colorSquare");
-                //squares.style.backgroundColor = final;
-                for (var i = 0; i < squares.length; i++) {
-                    squares[i].style.backgroundColor = final;
-                }
-                //console.log("hsl(" + hueInput + ", " + satInput + ", " + valInput + ")");
-                
-                var colorS = document.querySelector('.colorSquare');
-                colorS.id = final;
-                console.log(colorS.id);
                 
             }
             function hslToHex(h, s, l) {
