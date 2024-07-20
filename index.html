@@ -3,7 +3,7 @@
     <head>
         <title>Color picker</title>
 
-        <meta name="viewport" content="width=device-width, initial-scale=0.8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css2?family=Ropa+Sans&family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Karma:wght@300&display=swap" rel="stylesheet">
         <style>
@@ -82,12 +82,13 @@
                 font-size: 24px;
                 color: #000;
                 padding: 10px;
-                max-width: 28.33vw;
+               
             }
             button {
                 border-style: hidden;
                 background: rgba(217, 217, 217, 0.00);
                 font-family: 'Karma', serif;
+                color: #000;
             }
             .buttons {
                 
@@ -109,7 +110,7 @@
             }
             .bigBorder {
                 width: 90vw;
-                min-height: auto; /* Set a minimum height that adjusts dynamically */
+                min-height: auto;
                 flex-shrink: 0;
                 /*border: 1px solid #000; */
                 background: rgba(217, 217, 217, 0.00);
@@ -117,6 +118,7 @@
                 display: flex;
                 flex-wrap: wrap;
             }
+            
 
           
         </style>
@@ -239,6 +241,7 @@
                                 border-style: hidden;
                                 background: rgba(217, 217, 217, 0.00);
                                 font-family: 'Karma', serif;
+                                color: #000;
                             }
                             .buttons {
                                 
@@ -262,6 +265,25 @@
                                 font-style: normal;
                                 font-weight: 400;
                                 line-height: normal;
+                            }
+                            @media (max-width: 550px) {
+                                
+                                .borderSmall {
+                                    width: 190px;
+                                    height: 190px;
+                                }
+                                button {
+                                    font-size: 11px;
+                                }
+                            }
+                            @media (max-width: 450px) {
+                                .borderSmall {
+                                    width: 80vw;
+                                    height: 80vw;
+                                }
+                                button {
+                                    font-size: 18px;
+                                }
                             }
                             
                         </style>
